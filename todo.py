@@ -61,3 +61,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def delete_task(index):
+    tasks = load_tasks()
+    if 1 <= index <= len(tasks):
+        removed = tasks.pop(index - 1)
+        save_tasks(tasks)
+        print(f"Deleted: {removed['text']}")
+    else:
+        print("Invalid task number.")
