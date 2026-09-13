@@ -44,25 +44,6 @@ def done_task(index):
         print("Invalid task number.")
 
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: todo.py [add|list|done] [args]")
-        return
-    cmd = sys.argv[1]
-    if cmd == "add" and len(sys.argv) > 2:
-        add_task(" ".join(sys.argv[2:]))
-    elif cmd == "list":
-        list_tasks()
-    elif cmd == "done" and len(sys.argv) > 2:
-        done_task(int(sys.argv[2]))
-    else:
-        print("Unknown command.")
-
-
-if __name__ == "__main__":
-    main()
-
-
 def delete_task(index):
     tasks = load_tasks()
     if 1 <= index <= len(tasks):
@@ -71,3 +52,24 @@ def delete_task(index):
         print(f"Deleted: {removed['text']}")
     else:
         print("Invalid task number.")
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: todo.py [add|list|done|delete] [args]")
+        return
+    cmd = sys.argv[1]
+    if cmd == "add" and len(sys.argv) > 2:
+        add_task(" ".join(sys.argv[2:]))
+    elif cmd == "list":
+        list_tasks()
+    elif cmd == "done" and len(sys.argv) > 2:
+        done_task(int(sys.argv[2]))
+    elif cmd == "delete" and len(sys.argv) > 2:
+        delete_task(int(sys.argv[2]))
+    else:
+        print("Unknown command.")
+
+
+if __name__ == "__main__":
+    main()
